@@ -28,7 +28,7 @@
               <td>{{ oeuvre.titreOeuvre }}</td>
               <td>{{ oeuvre.prixOeuvre }}</td>
               <td>{{ oeuvre.dateCreation | date: 'dd/MM/yyyy' }}</td>
-              <td>{{ oeuvre.genre?.nomGenre }}</td>
+              <td>{{ oeuvre.genre.nomGenre }}</td>
             </tr>
           }
         </tbody>

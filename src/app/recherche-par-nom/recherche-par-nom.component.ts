@@ -24,7 +24,7 @@ export class RechercheParNomComponent implements OnInit {
     this.oeuvres = this.allOeuvres;
   }
 
-  // Méthode KeyUp (filtrage direct dans le tableau)
+
   onKeyUp(filterText: string): void {
     this.oeuvres = this.allOeuvres.filter(item =>
       item.titreOeuvre?.toLowerCase().includes(filterText.toLowerCase())

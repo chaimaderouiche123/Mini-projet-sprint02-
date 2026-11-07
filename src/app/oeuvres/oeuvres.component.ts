@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Oeuvre } from '../model/oeuvre.model';
 import { OeuvreService } from '../services/oeuvre.service';
+import { AuthService } from '../services/auth.service'; // <-- Importation du service d'authentification
 
 @Component({
   selector: 'app-oeuvres',
@@ -15,7 +16,8 @@ export class OeuvresComponent implements OnInit {
 
   oeuvres!: Oeuvre[];
 
-  constructor(private oeuvreService: OeuvreService) {}
+  // Injection de AuthService en public pour l'utiliser dans le fichier HTML
+  constructor(private oeuvreService: OeuvreService, public authService: AuthService) {}
 
   ngOnInit(): void {
     this.oeuvres = this.oeuvreService.listeOeuvres();

@@ -19,7 +19,9 @@
             Oeuvres
           </a>
           <ul class="dropdown-menu" [class.show]="isOeuvresOpen">
-            <li><a class="dropdown-item" routerLink="/add-oeuvre" (click)="isOeuvresOpen = false">Ajouter</a></li>
+            @if (authService.isAdmin()) {
+              <li><a class="dropdown-item" routerLink="/addOeuvre" (click)="isOeuvresOpen = false">Ajouter</a></li>
+            }
             <li><a class="dropdown-item" routerLink="/oeuvres" (click)="isOeuvresOpen = false">Lister</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" routerLink="/rechercheParGenre" (click)="isOeuvresOpen = false">Recherche par Genre</a></li>
@@ -28,18 +30,23 @@
         </li>
       </ul>
 
-      <!-- User Profil -->
+      <!-- User Profil & Login / Logout -->
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" style="cursor: pointer;" (click)="toggleUser()">
-            chaima.derouiche
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end" [class.show]="isUserOpen">
-            <li><a class="dropdown-item" href="#">Login</a></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-          </ul>
-        </li>
+        @if (!authService.isloggedIn) {
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Login</a>
+          </li>
+        } @else {
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style="cursor: pointer;" (click)="toggleUser()">
+              [{{ authService.loggedUser }}]
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" [class.show]="isUserOpen">
+              <li><a class="dropdown-item" (click)="onLogout(); isUserOpen = false" style="cursor: pointer;">Logout</a></li>
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+            </ul>
+          </li>
+        }
       </ul>
     </div>
   </div>
