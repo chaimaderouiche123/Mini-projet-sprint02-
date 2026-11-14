@@ -7,6 +7,7 @@ import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './services/forbidden/forbidden.component';
 import { oeuvreGuard } from './services/oeuvre.guard';
+import { ListeGenresComponent } from './liste-genres/liste-genres.component';
 
 export const routes: Routes = [
   { path: "oeuvres", component: OeuvresComponent },
@@ -14,6 +15,7 @@ export const routes: Routes = [
   { path: "updateOeuvre/:id", component: UpdateOeuvreComponent, canActivate: [oeuvreGuard] },
   { path: "rechercheParGenre", component: RechercheParGenreComponent },
   { path: "rechercheParNom", component: RechercheParNomComponent },
+  { path: "listeGenres", component: ListeGenresComponent },
   { path: 'login', component: LoginComponent },
   { path: 'app-forbidden', component: ForbiddenComponent },
   { path: "", redirectTo: "oeuvres", pathMatch: "full" }

@@ -16,7 +16,6 @@ export class OeuvreService {
       { idGenre: 3, nomGenre: "piece de theatre" },
       { idGenre: 4, nomGenre: "poeme" },
       { idGenre: 5, nomGenre: "film" }
-
     ];
 
     this.oeuvres = [
@@ -63,4 +62,12 @@ export class OeuvreService {
   rechercherParGenre(idGenre: number): Oeuvre[] {
     return this.oeuvres.filter(o => o.genre && o.genre.idGenre == idGenre);
   }
+
+  // ==> AJOUT DE CETTE MÉTHODE POUR L'ATELIER (pour faire disparaître le rouge)
+  ajouterGenre(cat: Genre) {
+    const maxId = this.genres.length > 0 ? Math.max(...this.genres.map(g => g.idGenre)) : 0;
+    cat.idGenre = maxId + 1;
+    this.genres.push(cat);
+  }
+  
 }

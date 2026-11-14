@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  
+  <!-- Le formulaire d'ajout/modification s'affiche UNIQUEMENT si l'utilisateur est ADMIN -->
+  @if (authService.isAdmin()) {
+    <div class="col-sm-6 col-md-6 col-lg-6 mb-4">
+      <div class="card shadow-sm p-3">
+        <app-update-genre 
+          [genre]="updatedGenre" 
+          [ajout]="ajout"
+          (genreUpdated)="genreUpdated($event)">
+        </app-update-genre>
+      </div>
+    </div>
+  }
+
+  <!-- Tableau de la liste des genres -->
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nom Genre</th>
+            <!-- La colonne Actions s'affiche uniquement pour l'admin -->
+            @if (authService.isAdmin()) {
+              <th>Actions</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (cat of genres; track cat.idGenre) {
+            <tr>
+              <td>{{ cat.idGenre }}</td>
+              <td>{{ cat.nomGenre }}</td>
+              
+              <!-- Les boutons Éditer et Supprimer s'affichent uniquement pour l'admin -->
+              @if (authService.isAdmin()) {
+                <td>
+                  <button class="btn btn-success btn-sm me-2" (click)="updateGenre(cat)">Editer</button>
+                  <button class="btn btn-danger btn-sm" (click)="supprimerGenre(cat)">Supprimer</button>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
